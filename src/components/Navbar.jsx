@@ -26,19 +26,6 @@ const Navbar = () => {
           <NavLink to="/dashboard" className="navbar-item">
             <img src={logo} width="50" height="200" alt="logo" />
           </NavLink>
-
-          <a
-            href="!#"
-            role="button"
-            className="navbar-burger burger"
-            aria-label="menu"
-            aria-expanded="false"
-            data-target="navbarBasicExample"
-          >
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
         </div>
 
         {/* <div id="navbarBasicExample" className="navbar-menu">
