@@ -26,6 +26,15 @@ const Sidebar = () => {
             </NavLink>
           </li>
         </ul>
+        {user && user.role === "admin" && (
+          <ul className="menu-list">
+                      <li>
+            <NavLink to={"/drivings"}>
+              <IoPricetag /> Drivings
+            </NavLink>
+          </li>
+          </ul>
+        )}
         {user && (user.role === "sale" || user.role === "admin") && (
           <ul className="menu-list">
                       <li>
