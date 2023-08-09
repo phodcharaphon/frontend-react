@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import "bulma/css/bulma.css";
+import "@fortawesome/fontawesome-free/css/all.css";
+import "./UserList.css"; // ไฟล์ CSS สำหรับปรับแต่งสไตล์
 
 const Userlist = () => {
   const [users, setUsers] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 10;
 
   useEffect(() => {
     getUsers();
@@ -19,49 +24,88 @@ const Userlist = () => {
     getUsers();
   };
 
+  const totalItems = users.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentItems = users.slice(startIndex, endIndex);
+
   return (
-    <div>
-      <h1 className="title">สมาชิก</h1>
-      <h2 className="subtitle">ตารางสมาชิก</h2>
-      <Link to="/users/add" className="button is-primary mb-2">
-        เพิ่มข้อมูล
-      </Link>
+    <div className="User-list-container">
+      <h2 className="title">ตารางผู้ใช้งาน</h2>
+      <div className="field is-grouped">
+        <p className="control">
+          <Link to="/users/add" className="button is-primary">
+            <span className="icon">
+              <i className="fas fa-plus"></i>
+            </span>
+            <span>เพิ่มข้อมูล</span>
+          </Link>
+        </p>
+      </div>
+      <div className="table-container">
       <table className="table is-striped is-fullwidth">
         <thead>
           <tr>
-            <th className="center">No</th>
-            <th className="center">Name</th>
-            <th className="center">Username</th>
-            <th className="center">Role</th>
-            <th className="center">Actions</th>
+            <th className="center">ลำดับ</th>
+            <th className="center">ชื่อ</th>
+            <th className="center">ยูสเซอร์</th>
+            <th className="center">สถานะ</th>
+            <th className="center"></th>
           </tr>
         </thead>
         <tbody>
-          {users.map((user, index) => (
+          {currentItems.map((user, index) => (
             <tr key={user.uuid}>
               <td className="center">{index + 1}</td>
               <td className="center">{user.name}</td>
               <td className="center">{user.username}</td>
               <td className="center">{user.role}</td>
               <td>
+              <div className="buttons">
                 <Link
                   to={`/users/edit/${user.uuid}`}
                   className="button is-small is-info"
                 >
-                  แก้ไข
+                      <span className="icon">
+                        <i className="fas fa-edit"></i>
+                      </span>
+                      <span>แก้ไข</span>
                 </Link>
                 <button
                   onClick={() => deleteUser(user.uuid)}
                   className="button is-small is-danger"
                 >
-                  ลบ
+                     <span className="icon">
+                        <i className="fas fa-trash-alt"></i>
+                      </span>
+                      <span>ลบ</span>
                 </button>
+                </div>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
+    <div className="pagination">
+        <button
+          className="button"
+          onClick={() => setCurrentPage(currentPage - 1)}
+          disabled={currentPage === 0}
+        >
+          Previous
+        </button>
+        <button
+          className="button"
+          onClick={() => setCurrentPage(currentPage + 1)}
+          disabled={currentPage === totalPages - 1}
+        >
+          Next
+        </button>
+      </div>
+      </div>
   );
 };
 

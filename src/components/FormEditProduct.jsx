@@ -41,14 +41,14 @@ const FormEditProduct = () => {
       const qty = parseFloat(quantity);
       const uprice = parseFloat(unitprice);
 
-      if(!isNaN(qty) && !isNaN(uprice)) {
+      if (!isNaN(qty) && !isNaN(uprice)) {
         setPrice(qty * uprice);
-      }else {
+      } else {
         setPrice('');
       }
     };
     calculate();
-  },[quantity, unitprice]);
+  }, [quantity, unitprice]);
 
   const updateProduct = async (e) => {
     e.preventDefault();

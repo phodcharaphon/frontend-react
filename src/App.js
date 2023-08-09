@@ -10,6 +10,7 @@ import EditProduct from "./pages/EditProduct";
 import Stores from "./pages/Stores";
 import Drivings from "./pages/Drivings";
 import AddDriving from "./pages/AddDriving";
+import EditDriving from "./pages/EditDriving";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/stores" element={<Stores />} />
           <Route path="/drivings" element={<Drivings />} />
           <Route path="/drivings/add" element={<AddDriving />} />
+          <Route path="/drivings/edit/:id" element={<EditDriving />} />
         </Routes>
       </BrowserRouter>
     </div>

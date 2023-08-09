@@ -1,17 +1,16 @@
 import React from "react";
-import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
+import "./Layout.css"; // เพิ่มไฟล์ CSS สำหรับปรับแต่งสไตล์
 
 const Layout = ({ children }) => {
   return (
     <React.Fragment>
-      <Navbar />
-      <div className="columns mt-6" style={{ minHeight: "100vh" }}>
-        <div className="column is-2">
+      <div className="layout-container">
+        <div className="sidebar">
           <Sidebar />
         </div>
-        <div className="column has-background-light">
-          <main>{children}</main>
+        <div className="content">
+          {children}
         </div>
       </div>
     </React.Fragment>

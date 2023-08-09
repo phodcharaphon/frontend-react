@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import Layout from "./Layout";
-import FormAddDriving from "../components/FormAddDriving";
+import FormEditDriving from "../components/FormEditDriving";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getMe } from "../features/authSlice";
 
-const AddDriving = () => {
+const EditDriving = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isError } = useSelector((state) => state.auth);
@@ -21,9 +21,9 @@ const AddDriving = () => {
   }, [isError, navigate]);
   return (
     <Layout>
-      <FormAddDriving />
+      <FormEditDriving />
     </Layout>
   );
 };
 
-export default AddDriving;
+export default EditDriving;

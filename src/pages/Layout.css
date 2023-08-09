@@ -1,0 +1,36 @@
+/* Layout.css */
+
+.layout-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  flex: 0 0 250px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+}
+
+.content {
+  flex: 1;
+  background-color: white; /* เปลี่ยนสีพื้นหลังเป็นสีขาว */
+  padding: 15px;
+}
+
+/* เพิ่มสไตล์ที่เหมาะสมสำหรับอุปกรณ์มือถือ */
+@media (max-width: 768px) {
+  .layout-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    flex: none;
+    width: 100%;
+  }
+
+  .content {
+    flex: none;
+    width: 100%;
+  }
+}
