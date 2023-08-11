@@ -49,13 +49,14 @@ const StoreList = () => {
           <thead>
             <tr>
               <th>ลำดับ</th>
-              <th>สถานที่</th>
-              <th>เลขที่ใบส่ง</th>
-              <th>ชนิดสินค้า</th>
-              <th>หน่วย</th>
-              <th>จำนวน</th>
-              <th>ราคาต่อหน่วย</th>
-              <th>ยอดขาย</th>
+              <th>วันที่</th>
+              <th>เวลา</th>
+              <th>ทะเบียน</th>
+              <th>ไมล์ก่อน</th>
+              <th>ไมล์หลัง</th>
+              <th>ระยะทาง</th>
+              <th>น้ำมัน/ลิตร</th>
+              <th>Average</th>
               <th>ผู้ลงข้อมูล</th>
               <th></th>
             </tr>
@@ -64,7 +65,8 @@ const StoreList = () => {
             {currentItems.map((store, index) => (
               <tr key={store.uuid}>
                 <td>{index + 1}</td>
-                <td>{store.datetime}</td>
+                <td>{store.date}</td>
+                <td>{store.time}</td>
                 <td>{store.nocars}</td>
                 <td>{store.milesbefore}</td>
                 <td>{store.milesbehind}</td>
