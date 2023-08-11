@@ -28,17 +28,17 @@ const FormAddUser = () => {
       }
     }
   };
+
   return (
     <div>
-      <h1 className="title">Users</h1>
-      <h2 className="subtitle">Add New User</h2>
-      <div className="card is-shadowless">
+      <h2 className="subtitle">เพิ่มข้อมูล</h2>
+      <div className="card">
         <div className="card-content">
           <div className="content">
             <form onSubmit={saveUser}>
-              <p className="has-text-centered">{msg}</p>
+              <p className="has-text-centered has-text-danger">{msg}</p>
               <div className="field">
-                <label className="label">Name</label>
+                <label className="label">ชื่อ</label>
                 <div className="control">
                   <input
                     type="text"
@@ -50,7 +50,7 @@ const FormAddUser = () => {
                 </div>
               </div>
               <div className="field">
-                <label className="label">Username</label>
+                <label className="label">ยูสเซอร์</label>
                 <div className="control">
                   <input
                     type="text"
@@ -62,7 +62,7 @@ const FormAddUser = () => {
                 </div>
               </div>
               <div className="field">
-                <label className="label">Password</label>
+                <label className="label">พาสเวิร์ด</label>
                 <div className="control">
                   <input
                     type="password"
@@ -74,7 +74,7 @@ const FormAddUser = () => {
                 </div>
               </div>
               <div className="field">
-                <label className="label">Confirm Password</label>
+                <label className="label">ยืนยันพาสเวิร์ด</label>
                 <div className="control">
                   <input
                     type="password"
@@ -86,9 +86,9 @@ const FormAddUser = () => {
                 </div>
               </div>
               <div className="field">
-                <label className="label">Role</label>
+                <label className="label">สถานะ</label>
                 <div className="control">
-                  <div className="select is-fullwidth">
+                  <div className="select">
                     <select
                       value={role}
                       onChange={(e) => setRole(e.target.value)}
@@ -105,7 +105,7 @@ const FormAddUser = () => {
               <div className="field">
                 <div className="control">
                   <button type="submit" className="button is-success">
-                    Save
+                    บันทึก
                   </button>
                 </div>
               </div>

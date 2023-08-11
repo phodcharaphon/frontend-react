@@ -54,7 +54,7 @@ const FormEditDriving = () => {
     return (
         <div>
             <h2 className="subtitle">แก้ไขข้อมูล</h2>
-            <div className="card is-shadowless">
+            <div className="card">
                 <div className="card-content">
                     <div className="content">
                         <form onSubmit={updateDriving}>

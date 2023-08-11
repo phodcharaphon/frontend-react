@@ -101,7 +101,7 @@ const StoreList = () => {
           </tbody>
         </table>
       </div>
-      <div className="pagination">
+    <div className="pagination">
         <button
           className="button"
           onClick={() => setCurrentPage(currentPage - 1)}

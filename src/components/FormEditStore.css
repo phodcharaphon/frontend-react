@@ -1,0 +1,71 @@
+/* FormEditStore.css */
+
+.form-edit-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form-card {
+    max-width: 400px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.has-text-centered {
+    text-align: center;
+}
+
+.label {
+    font-size: 1rem;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+  /* PC */
+  @media (min-width: 1024px) {
+    /* ปรับแต่งสไตล์ที่เหมาะสมสำหรับหน้าจอขนาดใหญ่ (PC) */
+    .datepicker-container {
+      max-width: 400px; /* ปรับขนาดตามความเหมาะสม */
+      margin: 0 auto;
+    }
+  }
+  
+  /* Mobile */
+  @media (max-width: 768px) {
+    /* ปรับแต่งสไตล์ที่เหมาะสมสำหรับหน้าจอขนาดเล็ก (Mobile) */
+    .datepicker-container {
+      max-width: 300px; /* ปรับขนาดตามความเหมาะสม */
+      margin: 0 auto;
+    }
+  }
+  
+  /* iPad */
+  @media (min-width: 769px) and (max-width: 1023px) {
+    /* ปรับแต่งสไตล์ที่เหมาะสมสำหรับหน้าจอขนาดกลาง (iPad) */
+    .datepicker-container {
+      max-width: 400px; /* ปรับขนาดตามความเหมาะสม */
+      margin: 0 auto;
+    }
+  }
+  /* FormAddStore.css */
+
+/* ช่อง input ทั้งหมดมีขนาดเท่ากัน */
+.input {
+    width: 100%;
+  }

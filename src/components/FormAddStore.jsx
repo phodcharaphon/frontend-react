@@ -76,14 +76,14 @@ const FormAddStore = () => {
 
     return (
         <div>
-            <h2 className="subtitle">Add New Store</h2>
-            <div className="card is-shadowless">
+            <h2 className="subtitle">เพิ่มข้อมูล</h2>
+            <div className="card">
                 <div className="card-content">
                     <div className="content">
                         <form onSubmit={saveStore}>
-                            <p className="has-text-centered">{msg}</p>
+                            <p className="has-text-centered has-text-danger">{msg}</p>
 
-                            <div className="field">
+                            <div className="field equal-width-input">
                                 <label className="label">วันที่</label>
                                 <div className="control">
                                     <DatePicker
@@ -97,7 +97,7 @@ const FormAddStore = () => {
                                 </div>
                             </div>
 
-                            <div className="field">
+                            <div className="field equal-width-input">
                                 <label className="label">เวลา</label>
                                 <div className="control">
                                     <input
@@ -105,16 +105,14 @@ const FormAddStore = () => {
                                         className="input"
                                         value={time}
                                         onChange={handleTimeChange}
-                                        step="300" // เป็นการกำหนดให้เวลาเปลี่ยนแปลงทุก 5 นาที
+                                        step="300"
                                         required
-                                        style={{ appearance: "textfield" }} // เพิ่ม style เพื่อซ่อน AM/PM
+                                        style={{ appearance: "textfield" }}
                                     />
                                 </div>
                             </div>
 
-
-
-                            <div className="field">
+                            <div className="field equal-width-input">
                                 <label className="label">เจ้าของรถ</label>
                                 <div className="control">
                                     <input
@@ -128,7 +126,7 @@ const FormAddStore = () => {
                                 </div>
                             </div>
 
-                            <div className="field">
+                            <div className="field equal-width-input">
                                 <label className="label">ไมล์ก่อน</label>
                                 <div className="control">
                                     <input
@@ -142,7 +140,7 @@ const FormAddStore = () => {
                                 </div>
                             </div>
 
-                            <div className="field">
+                            <div className="field equal-width-input">
                                 <label className="label">ไมล์หลัง</label>
                                 <div className="control">
                                     <input
@@ -156,7 +154,7 @@ const FormAddStore = () => {
                                 </div>
                             </div>
 
-                            <div className="field">
+                            <div className="field equal-width-input">
                                 <label className="label">ระยะทาง</label>
                                 <div className="control">
                                     <input
@@ -171,7 +169,7 @@ const FormAddStore = () => {
                                 </div>
                             </div>
 
-                            <div className="field">
+                            <div className="field equal-width-input">
                                 <label className="label">น้ำมัน/ลิตร</label>
                                 <div className="control">
                                     <input
@@ -185,7 +183,7 @@ const FormAddStore = () => {
                                 </div>
                             </div>
 
-                            <div className="field">
+                            <div className="field equal-width-input">
                                 <label className="label">Average</label>
                                 <div className="control">
                                     <input

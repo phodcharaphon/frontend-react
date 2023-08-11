@@ -1,0 +1,89 @@
+/* เพิ่มสีพื้นหลังและสีตัวอักษรใน input field */
+.react-datepicker__input-container input {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 0.5rem;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  /* ปรับแต่งปุ่มเดือนและปี */
+  .react-datepicker__header {
+    background-color: #4f4caf;
+    border-bottom: none;
+    padding: 0.5rem;
+    border-radius: 0.25rem 0.25rem 0 0;
+  }
+  
+  /* ปรับแต่งสีของเดือนและปีในปุ่ม */
+  .react-datepicker__current-month,
+  .react-datepicker__navigation--years,
+  .react-datepicker__year-text {
+    color: #fff;
+  }
+  
+  /* ปรับแต่งสีของวันในปฏิทิน */
+  .react-datepicker__day {
+    color: #333;
+  }
+  
+  /* ปรับแต่งเมื่อโฮเวอร์วันในปฏิทิน */
+  .react-datepicker__day:hover {
+    background-color: #4c5baf;
+    color: #fff;
+  }
+  
+  /* ปรับแต่งลักษณะการเคลื่อนไหวเมื่อเลือกวัน */
+  .react-datepicker__day--selected {
+    background-color: #4c65af;
+    color: #fff;
+  }
+  
+  /* ปรับแต่งสีของวันที่ไม่สามารถเลือกได้ */
+  .react-datepicker__day--disabled {
+    color: #ccc;
+  }
+
+  .equal-width-input .input,
+.equal-width-input .react-datepicker-wrapper {
+    width: 100%;
+    /* คุณสามารถปรับแต่งสไตล์เพิ่มเติมตามความต้องการของคุณได้ */
+}
+  /* PC */
+@media (min-width: 1024px) {
+    /* ปรับแต่งสไตล์ที่เหมาะสมสำหรับหน้าจอขนาดใหญ่ (PC) */
+    .datepicker-container {
+      max-width: 400px; /* ปรับขนาดตามความเหมาะสม */
+      margin: 0 auto;
+    }
+  }
+  
+  /* Mobile */
+  @media (max-width: 768px) {
+    /* ปรับแต่งสไตล์ที่เหมาะสมสำหรับหน้าจอขนาดเล็ก (Mobile) */
+    .datepicker-container {
+      max-width: 300px; /* ปรับขนาดตามความเหมาะสม */
+      margin: 0 auto;
+    }
+  }
+  
+  /* iPad */
+  @media (min-width: 769px) and (max-width: 1023px) {
+    /* ปรับแต่งสไตล์ที่เหมาะสมสำหรับหน้าจอขนาดกลาง (iPad) */
+    .datepicker-container {
+      max-width: 400px; /* ปรับขนาดตามความเหมาะสม */
+      margin: 0 auto;
+    }
+  }
+  /* FormAddStore.css */
+
+/* ช่อง input ทั้งหมดมีขนาดเท่ากัน */
+.input {
+    width: 100%;
+  }
+  
+  /* ปรับขนาดตัวเลือกเวลาให้เท่ากับช่อง input */
+  input[type="time"] {
+    width: 100%;
+  }
+  

@@ -47,15 +47,14 @@ const FormEditUser = () => {
   };
   return (
     <div>
-      <h1 className="title">Users</h1>
-      <h2 className="subtitle">Update User</h2>
-      <div className="card is-shadowless">
+      <h2 className="subtitle">แก้ไขข้อมูล</h2>
+      <div className="card">
         <div className="card-content">
           <div className="content">
             <form onSubmit={updateUser}>
               <p className="has-text-centered">{msg}</p>
               <div className="field">
-                <label className="label">Name</label>
+                <label className="label">ชื่อ</label>
                 <div className="control">
                   <input
                     type="text"
@@ -67,7 +66,7 @@ const FormEditUser = () => {
                 </div>
               </div>
               <div className="field">
-                <label className="label">Username</label>
+                <label className="label">ยูสเซอร์</label>
                 <div className="control">
                   <input
                     type="text"
@@ -79,7 +78,7 @@ const FormEditUser = () => {
                 </div>
               </div>
               <div className="field">
-                <label className="label">Password</label>
+                <label className="label">พาสเวิร์ด</label>
                 <div className="control">
                   <input
                     type="password"
@@ -91,7 +90,7 @@ const FormEditUser = () => {
                 </div>
               </div>
               <div className="field">
-                <label className="label">Confirm Password</label>
+                <label className="label">ยืนยันพาสเวิร์ด</label>
                 <div className="control">
                   <input
                     type="password"
@@ -103,7 +102,7 @@ const FormEditUser = () => {
                 </div>
               </div>
               <div className="field">
-                <label className="label">Role</label>
+                <label className="label">สถานะ</label>
                 <div className="control">
                   <div className="select is-fullwidth">
                     <select
@@ -122,7 +121,7 @@ const FormEditUser = () => {
               <div className="field">
                 <div className="control">
                   <button type="submit" className="button is-success">
-                    Update
+                    อัพเดต
                   </button>
                 </div>
               </div>

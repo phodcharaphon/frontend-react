@@ -33,9 +33,8 @@ const FormAddDriving = () => {
 
     return (
         <div>
-            <h1 className="title">Driving</h1>
-            <h2 className="subtitle">Add New Driving</h2>
-            <div className="card is-shadowless">
+            <h2 className="subtitle">เพิ่มข้อมูล</h2>
+            <div className="card">
                 <div className="card-content">
                     <div className="content">
                         <form onSubmit={saveDriving}>
@@ -130,7 +129,7 @@ const FormAddDriving = () => {
                             <div className="field">
                                 <div className="control">
                                     <button type="submit" className="button is-success">
-                                        Save
+                                        บันทึก
                                     </button>
                                 </div>
                             </div>

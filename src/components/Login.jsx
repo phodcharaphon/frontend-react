@@ -34,19 +34,19 @@ const Login = () => {
                 {isError && <p className="has-text-centered">{message}</p>}
                 <h1 className="title is-2">เข้าสู่ระบบ</h1>
                 <div className="field">
-                  <label className="label">Username</label>
+                  <label className="label">ยูสเซอร์</label>
                   <div className="control">
                     <input
                       type="text"
                       className="input"
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
-                      placeholder="Username"
+                      placeholder="ยูสเซอร์"
                     />
                   </div>
                 </div>
                 <div className="field">
-                  <label className="label">Password</label>
+                  <label className="label">พาสเวิร์ด</label>
                   <div className="control">
                     <input
                       type="password"

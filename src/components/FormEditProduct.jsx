@@ -72,9 +72,8 @@ const FormEditProduct = () => {
 
   return (
     <div>
-      <h1 className="title">ตารางการผลิต</h1>
       <h2 className="subtitle">แก้ไขข้อมูล</h2>
-      <div className="card is-shadowless">
+      <div className="card">
         <div className="card-content">
           <div className="content">
             <form onSubmit={updateProduct}>

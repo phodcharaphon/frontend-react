@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -34,28 +34,27 @@ const FormAddProduct = () => {
   };
 
   useEffect(() => {
-    const calculate = () => {
+    const calculatePrice = () => {
       const qty = parseFloat(quantity);
       const uprice = parseFloat(unitprice);
 
-      if(!isNaN(qty) && !isNaN(uprice)) {
+      if (!isNaN(qty) && !isNaN(uprice)) {
         setPrice(qty * uprice);
-      }else {
-        setPrice('');
+      } else {
+        setPrice("");
       }
     };
-    calculate();
-  },[quantity, unitprice]);
+    calculatePrice();
+  }, [quantity, unitprice]);
 
   return (
     <div>
-      <h1 className="title">Products</h1>
-      <h2 className="subtitle">Add New Product</h2>
-      <div className="card is-shadowless">
+      <h2 className="subtitle">เพิ่มข้อมูล</h2>
+      <div className="card">
         <div className="card-content">
           <div className="content">
             <form onSubmit={saveProduct}>
-              <p className="has-text-centered">{msg}</p>
+              <p className="has-text-centered has-text-danger">{msg}</p>
               <div className="field">
                 <label className="label">สถานที่</label>
                 <div className="control">
@@ -108,7 +107,7 @@ const FormAddProduct = () => {
                 <label className="label">จำนวน</label>
                 <div className="control">
                   <input
-                    type="text"
+                    type="number"
                     className="input"
                     value={quantity}
                     onChange={(e) => setQuantity(e.target.value)}
@@ -120,7 +119,7 @@ const FormAddProduct = () => {
                 <label className="label">ราคาต่อหน่วย</label>
                 <div className="control">
                   <input
-                    type="text"
+                    type="number"
                     className="input"
                     value={unitprice}
                     onChange={(e) => setUnitprice(e.target.value)}
@@ -135,17 +134,15 @@ const FormAddProduct = () => {
                     type="text"
                     className="input"
                     value={price}
-                    onChange={(e) => setPrice(e.target.value)}
                     placeholder="ยอดขาย"
                     disabled
                   />
                 </div>
               </div>
-
               <div className="field">
                 <div className="control">
                   <button type="submit" className="button is-success">
-                    Save
+                    บันทึก
                   </button>
                 </div>
               </div>
