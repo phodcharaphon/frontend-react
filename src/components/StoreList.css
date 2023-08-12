@@ -1,7 +1,7 @@
 /* StoreList.css */
-/* .store-list-container {
-    padding: 20px;
-  } */
+.store-list-container {
+  margin: 0 auto;
+}
   
   .table-container {
     overflow-x: auto;

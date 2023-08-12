@@ -4,10 +4,12 @@ import axios from "axios";
 import "bulma/css/bulma.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 import "./StoreList.css"; // ไฟล์ CSS สำหรับปรับแต่งสไตล์
+import * as XLSX from "xlsx";
 
 const StoreList = () => {
   const [stores, setStores] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
   const itemsPerPage = 10;
 
   useEffect(() => {
@@ -24,25 +26,89 @@ const StoreList = () => {
     getStores();
   };
 
-  const totalItems = stores.length;
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const handleSearch = (event) => {
+    setSearchQuery(event.target.value);
+    setCurrentPage(0);
+  };
 
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentItems = stores.slice(startIndex, endIndex);
+  const filteredStores = stores.filter((store) => {
+    const searchKeywords = searchQuery.toLowerCase().split(" ");
+
+    return searchKeywords.every((keyword) =>
+      Object.values(store).some((value) =>
+        value.toString().toLowerCase().includes(keyword)
+      )
+    );
+  });
+
+  const totalFilteredItems = filteredStores.length;
+  const totalFilteredPages = Math.ceil(totalFilteredItems / itemsPerPage);
+
+  const startIndexFiltered = currentPage * itemsPerPage;
+  const endIndexFiltered = startIndexFiltered + itemsPerPage;
+  const currentFilteredItems = filteredStores.slice(
+    startIndexFiltered,
+    endIndexFiltered
+  );
+
+  const handleExportToExcel = () => {
+    const formattedData = currentFilteredItems.map((store, index) => [
+      index + 1,
+      store.date,
+      store.time,
+      store.nocars,
+      store.milesbefore,
+      store.milesbehind,
+      store.distance,
+      store.fuel,
+      store.average,
+      store.user.name
+    ]);
+
+    const worksheet = XLSX.utils.aoa_to_sheet([
+      ['ลำดับ', 'วันที่', 'เวลา', 'ทะเบียนรถ', 'ไมล์ก่อน', 'ไมล์หลัง', 'ระยะทาง', 'น้ำมัน / ลิตร', 'Average', 'ผู้ลงข้อมูล'],
+      ...formattedData,
+    ]);
+
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'ตารางน้ำมัน');
+
+    XLSX.writeFile(workbook, 'ตารางน้ำมัน.xlsx');
+  };
+
 
   return (
     <div className="store-list-container">
       <h2 className="title">ตารางน้ำมัน</h2>
-      <div className="field is-grouped">
-        <p className="control">
-          <Link to="/stores/add" className="button is-primary">
-            <span className="icon">
-              <i className="fas fa-plus"></i>
-            </span>
-            <span>เพิ่มข้อมูล</span>
-          </Link>
-        </p>
+      <div className="field is-flex is-align-items-center mb-3">
+        <label className="label mr-2">ค้นหา:</label>
+        <div className="control is-flex-grow-1">
+          <input
+            type="text"
+            className="input"
+            style={{ maxWidth: '25%' }}
+            value={searchQuery}
+            onChange={handleSearch}
+          />
+        </div>
+        <div className="field is-grouped">
+          <div className="control">
+            <Link to="/stores/add" className="button is-primary">
+              <span className="icon">
+                <i className="fas fa-plus"></i>
+              </span>
+              <span>เพิ่มข้อมูล</span>
+            </Link>
+          </div>
+          <div className="control">
+            <button className="button is-success" onClick={handleExportToExcel}>
+              <span className="icon">
+                <i className="fas fa-file-excel"></i>
+              </span>
+              <span>Excel</span>
+            </button>
+          </div>
+        </div>
       </div>
       <div className="table-container">
         <table className="table is-striped is-fullwidth">
@@ -62,9 +128,9 @@ const StoreList = () => {
             </tr>
           </thead>
           <tbody>
-            {currentItems.map((store, index) => (
+            {currentFilteredItems.map((store, index) => (
               <tr key={store.uuid}>
-                <td>{index + 1}</td>
+                <td>{startIndexFiltered + index + 1}</td>
                 <td>{store.date}</td>
                 <td>{store.time}</td>
                 <td>{store.nocars}</td>
@@ -101,20 +167,21 @@ const StoreList = () => {
           </tbody>
         </table>
       </div>
-    <div className="pagination">
+
+      <div className="pagination">
         <button
           className="button"
           onClick={() => setCurrentPage(currentPage - 1)}
           disabled={currentPage === 0}
         >
-          Previous
+          ย้อนกลับ
         </button>
         <button
           className="button"
           onClick={() => setCurrentPage(currentPage + 1)}
-          disabled={currentPage === totalPages - 1}
+          disabled={currentPage === totalFilteredPages - 1}
         >
-          Next
+          ถัดไป
         </button>
       </div>
     </div>

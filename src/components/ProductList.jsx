@@ -4,10 +4,12 @@ import axios from "axios";
 import "bulma/css/bulma.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 import "./ProductList.css"; // ไฟล์ CSS สำหรับปรับแต่งสไตล์
+import * as XLSX from "xlsx";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
   const itemsPerPage = 10;
 
   useEffect(() => {
@@ -24,25 +26,88 @@ const ProductList = () => {
     getProducts();
   };
 
-  const totalItems = products.length;
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const handleSearch = (event) => {
+    setSearchQuery(event.target.value);
+    setCurrentPage(0);
+  };
 
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentItems = products.slice(startIndex, endIndex); 
+  const filteredProducts = products.filter((product) => {
+    const searchKeywords = searchQuery.toLowerCase().split(" ");
+
+    return searchKeywords.every((keyword) =>
+      Object.values(product).some((value) =>
+        value.toString().toLowerCase().includes(keyword)
+      )
+    );
+  });
+
+  const totalFilteredItems = filteredProducts.length;
+  const totalFilteredPages = Math.ceil(totalFilteredItems / itemsPerPage);
+
+  const startIndexFiltered = currentPage * itemsPerPage;
+  const endIndexFiltered = startIndexFiltered + itemsPerPage;
+  const currentFilteredItems = filteredProducts.slice(
+    startIndexFiltered,
+    endIndexFiltered
+  );
+
+  const handleExportToExcel = () => {
+    const formattedData = currentFilteredItems.map((product, index) => [
+      index + 1,
+      product.locationname,
+      product.invioce,
+      product.producttype,
+      product.unit,
+      product.quantity,
+      product.unitprice,
+      product.price,
+      product.user.name
+    ]);
+
+    const worksheet = XLSX.utils.aoa_to_sheet([
+      ['ลำดับ', 'สถานที่', 'เลขที่ใบส่ง', 'ชนิดสินค้า', 'หน่วย', 'จำนวน', 'ราคาต่อหน่วย', 'ยอดขาย', 'ผู้ลงข้อมูล'],
+      ...formattedData,
+    ]);
+
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'ควบคุมการผลิต');
+
+    XLSX.writeFile(workbook, 'ควบคุมการผลิต.xlsx');
+  };
+
 
   return (
     <div className="product-list-container">
       <h2 className="title">ขาย / ผลิต</h2>
-      <div className="field is-grouped">
-        <p className="control">
+      <div className="field is-flex is-align-items-center mb-3">
+        <label className="label mr-2">ค้นหา:</label>
+        <div className="control is-flex-grow-1">
+          <input
+            type="text"
+            className="input"
+            style={{ maxWidth: '25%' }}
+            value={searchQuery}
+            onChange={handleSearch}
+          />
+        </div>
+        <div className="field is-grouped">
+        <div className="control">
           <Link to="/products/add" className="button is-primary">
             <span className="icon">
               <i className="fas fa-plus"></i>
             </span>
             <span>เพิ่มข้อมูล</span>
           </Link>
-        </p>
+        </div>
+        <div className="control">
+          <button className="button is-success" onClick={handleExportToExcel}>
+            <span className="icon">
+              <i className="fas fa-file-excel"></i>
+            </span>
+            <span>Excel</span>
+          </button>
+        </div>
+      </div>
       </div>
       <div className="table-container">
         <table className="table is-striped is-fullwidth">
@@ -61,9 +126,9 @@ const ProductList = () => {
             </tr>
           </thead>
           <tbody>
-            {currentItems.map((product, index) => (
+            {currentFilteredItems.map((product, index) => (
               <tr key={product.uuid}>
-                <td>{index + 1}</td>
+                <td>{startIndexFiltered + index + 1}</td>
                 <td>{product.locationname}</td>
                 <td>{product.invioce}</td>
                 <td>{product.producttype}</td>
@@ -76,7 +141,7 @@ const ProductList = () => {
                   <div className="buttons">
                     <Link
                       to={`/products/edit/${product.uuid}`}
-                      className="button is-small is-info"
+                      className="button is-info"
                     >
                       <span className="icon">
                         <i className="fas fa-edit"></i>
@@ -85,7 +150,7 @@ const ProductList = () => {
                     </Link>
                     <button
                       onClick={() => deleteProduct(product.uuid)}
-                      className="button is-small is-danger"
+                      className="button is-danger"
                     >
                       <span className="icon">
                         <i className="fas fa-trash-alt"></i>
@@ -105,14 +170,14 @@ const ProductList = () => {
           onClick={() => setCurrentPage(currentPage - 1)}
           disabled={currentPage === 0}
         >
-          Previous
+          ย้อนกลับ
         </button>
         <button
           className="button"
           onClick={() => setCurrentPage(currentPage + 1)}
-          disabled={currentPage === totalPages - 1}
+          disabled={currentPage === totalFilteredPages - 1}
         >
-          Next
+          ถัดไป
         </button>
       </div>
     </div>

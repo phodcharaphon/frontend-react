@@ -136,6 +136,7 @@ const DrivingList = () => {
                 <td>{driving.department}</td>
                 <td>{driving.user.name}</td>
                 <td>
+
                   <div className="buttons">
                     <Link
                       to={`/drivings/edit/${driving.uuid}`}
@@ -168,14 +169,14 @@ const DrivingList = () => {
           onClick={() => setCurrentPage(currentPage - 1)}
           disabled={currentPage === 0}
         >
-          Previous
+          ย้อนกลับ
         </button>
         <button
           className="button"
           onClick={() => setCurrentPage(currentPage + 1)}
           disabled={currentPage === totalFilteredPages - 1}
         >
-          Next
+          ถัดไป
         </button>
       </div>
     </div>

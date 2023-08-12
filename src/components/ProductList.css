@@ -1,8 +1,7 @@
 /* ProductList.css */
-
-/* .product-list-container {
-  padding: 20px;
-} */
+.product-list-container {
+  margin: 0 auto;
+}
 
 .title {
   font-size: 24px;
@@ -11,6 +10,11 @@
 
 .button {
   margin-bottom: 10px;
+}
+
+.buttons {
+  text-align: center;
+  width: 100%;
 }
 
 .table-container {
@@ -35,31 +39,18 @@ td {
   white-space: pre-line; /* แสดงข้อมูลบนบรรทัดใหม่ */
 }
 
-.button.is-small {
-  margin-right: 5px;
-}
-
-.buttons {
-  display: flex;
-  gap: 5px; /* ระยะห่างระหว่างปุ่ม */
-}
-
-.buttons .button {
-  padding: 6px 12px;
-}
-
 /* Responsive styles */
 @media (max-width: 768px) {
   .title {
-      font-size: 20px;
+    font-size: 20px;
   }
 
   .table {
-      font-size: 12px;
+    font-size: 12px;
   }
 
   th,
   td {
-      padding: 5px;
+    padding: 5px;
   }
 }

@@ -95,14 +95,14 @@ const Userlist = () => {
           onClick={() => setCurrentPage(currentPage - 1)}
           disabled={currentPage === 0}
         >
-          Previous
+          ย้อนกลับ
         </button>
         <button
           className="button"
           onClick={() => setCurrentPage(currentPage + 1)}
           disabled={currentPage === totalPages - 1}
         >
-          Next
+          ถัดไป
         </button>
       </div>
       </div>
