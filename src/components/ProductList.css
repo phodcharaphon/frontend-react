@@ -3,6 +3,10 @@
   margin: 0 auto;
 }
 
+thead {
+  display: table-header-group;
+}
+
 .title {
   font-size: 24px;
   margin-bottom: 10px;
@@ -31,26 +35,23 @@
   width: 100%;
 }
 
-th,
-td {
-  padding: 10px;
-  border: 1px solid #ddd;
-  text-align: left;
-  white-space: pre-line; /* แสดงข้อมูลบนบรรทัดใหม่ */
+td.is-multiline {
+  white-space: normal;
+  word-break: break-word;
 }
 
 /* Responsive styles */
 @media (max-width: 768px) {
   .title {
-    font-size: 20px;
+      font-size: 20px;
   }
 
   .table {
-    font-size: 12px;
+      font-size: 12px;
   }
 
   th,
   td {
-    padding: 5px;
+      padding: 5px;
   }
 }

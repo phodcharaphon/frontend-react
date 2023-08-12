@@ -64,6 +64,7 @@ const FormAddProduct = () => {
                     value={locationname}
                     onChange={(e) => setLocationname(e.target.value)}
                     placeholder="สถานที่"
+                    required
                   />
                 </div>
               </div>
@@ -76,6 +77,7 @@ const FormAddProduct = () => {
                     value={invioce}
                     onChange={(e) => setInvioce(e.target.value)}
                     placeholder="เลขที่ใบส่ง"
+                    required
                   />
                 </div>
               </div>
@@ -88,6 +90,7 @@ const FormAddProduct = () => {
                     value={producttype}
                     onChange={(e) => setProducttype(e.target.value)}
                     placeholder="ชนิดสินค้า"
+                    required
                   />
                 </div>
               </div>
@@ -100,6 +103,7 @@ const FormAddProduct = () => {
                     value={unit}
                     onChange={(e) => setUnit(e.target.value)}
                     placeholder="หน่วย"
+                    required
                   />
                 </div>
               </div>
@@ -112,6 +116,7 @@ const FormAddProduct = () => {
                     value={quantity}
                     onChange={(e) => setQuantity(e.target.value)}
                     placeholder="จำนวน"
+                    required
                   />
                 </div>
               </div>
@@ -124,6 +129,7 @@ const FormAddProduct = () => {
                     value={unitprice}
                     onChange={(e) => setUnitprice(e.target.value)}
                     placeholder="ราคาต่อหน่วย"
+                    required
                   />
                 </div>
               </div>

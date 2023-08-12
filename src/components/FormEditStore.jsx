@@ -45,9 +45,8 @@ const FormEditStore = () => {
     const updateStore = async (e) => {
         e.preventDefault();
         try {
-            const formattedDate = date.toISOString().substr(0, 10);
             await axios.patch(`http://localhost:5000/stores/${id}`, {
-                date: formattedDate,
+                date: date.toISOString().substr(0, 10), // ปรับค่าวันที่เป็น ISO 8601 ใหม่
                 time: time,
                 nocars: nocars,
                 milesbefore: milesbefore,

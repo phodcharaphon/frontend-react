@@ -48,25 +48,25 @@ const Userlist = () => {
       <table className="table is-striped is-fullwidth">
         <thead>
           <tr>
-            <th className="center">ลำดับ</th>
-            <th className="center">ชื่อ</th>
-            <th className="center">ยูสเซอร์</th>
-            <th className="center">สถานะ</th>
-            <th className="center"></th>
+            <th className="has-text-centered">ลำดับ</th>
+            <th className="has-text-centered">ชื่อ</th>
+            <th className="has-text-centered">ยูสเซอร์</th>
+            <th className="has-text-centered">สถานะ</th>
+            <th className="has-text-centered"></th>
           </tr>
         </thead>
         <tbody>
           {currentItems.map((user, index) => (
             <tr key={user.uuid}>
-              <td className="center">{index + 1}</td>
-              <td className="center">{user.name}</td>
-              <td className="center">{user.username}</td>
-              <td className="center">{user.role}</td>
+              <td className="is-vcentered has-text-centered">{index + 1}</td>
+              <td className="is-vcentered has-text-centered">{user.name}</td>
+              <td className="is-vcentered has-text-centered">{user.username}</td>
+              <td className="is-vcentered has-text-centered">{user.role}</td>
               <td>
               <div className="buttons">
                 <Link
                   to={`/users/edit/${user.uuid}`}
-                  className="button is-small is-info"
+                  className="button is-info is-small"
                 >
                       <span className="icon">
                         <i className="fas fa-edit"></i>
@@ -75,7 +75,7 @@ const Userlist = () => {
                 </Link>
                 <button
                   onClick={() => deleteUser(user.uuid)}
-                  className="button is-small is-danger"
+                  className="button is-danger is-small"
                 >
                      <span className="icon">
                         <i className="fas fa-trash-alt"></i>

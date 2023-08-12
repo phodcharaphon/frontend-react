@@ -46,6 +46,7 @@ const FormAddUser = () => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Name"
+                    required
                   />
                 </div>
               </div>
@@ -58,6 +59,7 @@ const FormAddUser = () => {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     placeholder="Username"
+                    required
                   />
                 </div>
               </div>
@@ -70,6 +72,7 @@ const FormAddUser = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="******"
+                    required
                   />
                 </div>
               </div>
@@ -82,6 +85,7 @@ const FormAddUser = () => {
                     value={confPassword}
                     onChange={(e) => setConfPassword(e.target.value)}
                     placeholder="******"
+                    required
                   />
                 </div>
               </div>

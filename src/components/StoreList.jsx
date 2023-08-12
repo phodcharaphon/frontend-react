@@ -113,7 +113,7 @@ const StoreList = () => {
       <div className="table-container">
         <table className="table is-striped is-fullwidth">
           <thead>
-            <tr>
+            <tr className="has-text-centered">
               <th>ลำดับ</th>
               <th>วันที่</th>
               <th>เวลา</th>
@@ -127,24 +127,24 @@ const StoreList = () => {
               <th></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody >
             {currentFilteredItems.map((store, index) => (
               <tr key={store.uuid}>
-                <td>{startIndexFiltered + index + 1}</td>
-                <td>{store.date}</td>
-                <td>{store.time}</td>
-                <td>{store.nocars}</td>
-                <td>{store.milesbefore}</td>
-                <td>{store.milesbehind}</td>
-                <td>{store.distance}</td>
-                <td>{store.fuel}</td>
-                <td>{store.average}</td>
-                <td>{store.user.name}</td>
+                <td className="is-vcentered has-text-centered">{startIndexFiltered + index + 1}</td>
+                <td className="is-vcentered has-text-centered">{store.date}</td>
+                <td className="is-vcentered has-text-centered">{store.time}</td>
+                <td className="is-vcentered has-text-centered">{store.nocars}</td>
+                <td className="is-vcentered has-text-centered">{store.milesbefore}</td>
+                <td className="is-vcentered has-text-centered">{store.milesbehind}</td>
+                <td className="is-vcentered has-text-centered">{store.distance}</td>
+                <td className="is-vcentered has-text-centered">{store.fuel}</td>
+                <td className="is-vcentered has-text-centered">{store.average}</td>
+                <td className="is-vcentered has-text-centered">{store.user.name}</td>
                 <td>
                   <div className="buttons">
                     <Link
                       to={`/stores/edit/${store.uuid}`}
-                      className="button is-small is-info"
+                      className="button is-info"
                     >
                       <span className="icon">
                         <i className="fas fa-edit"></i>
@@ -153,7 +153,7 @@ const StoreList = () => {
                     </Link>
                     <button
                       onClick={() => deleteStore(store.uuid)}
-                      className="button is-small is-danger"
+                      className="button is-danger"
                     >
                       <span className="icon">
                         <i className="fas fa-trash-alt"></i>

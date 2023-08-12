@@ -35,29 +35,36 @@ const Sidebar = () => {
           </li>
         </ul>
         {user && user.role === "admin" && (
-          <ul className="menu-list">
-            <li>
-              <NavLink to={"/drivings"}>
-                <IoCar /> การเดินรถ
-              </NavLink>
-            </li>
-          </ul>
+          <div>
+            <p className="menu-label">IT</p>
+            <ul className="menu-list">
+              <li>
+                <NavLink to={"/drivings"}>
+                  <IoCar /> การเดินรถ
+                </NavLink>
+              </li>
+            </ul>
+          </div>
         )}
         {user && (user.role === "sale" || user.role === "admin") && (
-          <ul className="menu-list">
-            <li>
-              <NavLink to={"/products"}>
-                <IoPricetag /> ผลิต
-              </NavLink>
-            </li>
-          </ul>
+          <div>
+            <p className="menu-label">Production</p>
+            <ul className="menu-list">
+              <li>
+                <NavLink to={"/products"}>
+                  <IoPricetag /> ผลิต
+                </NavLink>
+              </li>
+            </ul>
+          </div>
         )}
         {user && (user.role === "store" || user.role === "admin") && (
           <div>
+            <p className="menu-label">สโตร์</p>
             <ul className="menu-list">
               <li>
                 <NavLink to={"/stores"}>
-                  <IoWater /> สโตร์
+                  <IoWater /> สโตร์น้ำมัน
                 </NavLink>
               </li>
             </ul>

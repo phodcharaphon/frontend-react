@@ -6,7 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./FormAddStore.css";
 
 const FormAddStore = () => {
-    const [date, setDate] = useState(""); // เริ่มต้นเป็นวันที่ปัจจุบัน
+    const [date, setDate] = useState(new Date()); // เริ่มต้นเป็นวันที่ปัจจุบัน
     const [time, setTime] = useState("");
     const [nocars, setNocars] = useState("");
     const [milesbefore, setMilesbefore] = useState("");

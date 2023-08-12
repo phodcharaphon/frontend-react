@@ -112,7 +112,7 @@ const DrivingList = () => {
       <div className="table-container">
         <table className="table is-striped is-fullwidth">
           <thead>
-            <tr>
+            <tr className="has-text-centered">
               <th>ลำดับ</th>
               <th>ทะเบียนรถ</th>
               <th>เจ้าของรถ</th>
@@ -127,16 +127,15 @@ const DrivingList = () => {
           <tbody>
             {currentFilteredItems.map((driving, index) => (
               <tr key={driving.uuid}>
-                <td>{startIndexFiltered + index + 1}</td>
-                <td>{driving.nocars}</td>
-                <td>{driving.name}</td>
-                <td>{driving.status}</td>
-                <td>{driving.note}</td>
-                <td>{driving.distance}</td>
-                <td>{driving.department}</td>
-                <td>{driving.user.name}</td>
+                <td className="is-vcentered has-text-centered">{startIndexFiltered + index + 1}</td>
+                <td className="is-vcentered has-text-centered">{driving.nocars}</td>
+                <td className="is-vcentered has-text-centered">{driving.name}</td>
+                <td className="is-vcentered has-text-centered">{driving.status}</td>
+                <td className="is-vcentered has-text-centered">{driving.note}</td>
+                <td className="is-vcentered has-text-centered">{driving.distance}</td>
+                <td className="is-vcentered has-text-centered">{driving.department}</td>
+                <td className="is-vcentered has-text-centered">{driving.user.name}</td>
                 <td>
-
                   <div className="buttons">
                     <Link
                       to={`/drivings/edit/${driving.uuid}`}

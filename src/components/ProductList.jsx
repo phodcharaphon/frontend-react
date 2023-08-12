@@ -113,30 +113,30 @@ const ProductList = () => {
         <table className="table is-striped is-fullwidth">
           <thead>
             <tr>
-              <th>ลำดับ</th>
-              <th>สถานที่</th>
-              <th>เลขที่ใบส่ง</th>
-              <th>ชนิดสินค้า</th>
-              <th>หน่วย</th>
-              <th>จำนวน</th>
-              <th>ราคาต่อหน่วย</th>
-              <th>ยอดขาย</th>
-              <th>ผู้ลงข้อมูล</th>
+              <th className="has-text-centered">ลำดับ</th>
+              <th className="has-text-centered">สถานที่</th>
+              <th className="has-text-centered">เลขที่ใบส่ง</th>
+              <th className="has-text-centered">ชนิดสินค้า</th>
+              <th className="has-text-centered">หน่วย</th>
+              <th className="has-text-centered">จำนวน</th>
+              <th className="has-text-centered">ราคาต่อหน่วย</th>
+              <th className="has-text-centered">ยอดขาย</th>
+              <th className="has-text-centered">ผู้ลงข้อมูล</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
             {currentFilteredItems.map((product, index) => (
               <tr key={product.uuid}>
-                <td>{startIndexFiltered + index + 1}</td>
-                <td>{product.locationname}</td>
-                <td>{product.invioce}</td>
-                <td>{product.producttype}</td>
-                <td>{product.unit}</td>
-                <td>{product.quantity}</td>
-                <td>{product.unitprice}</td>
-                <td>{product.price}</td>
-                <td>{product.user.name}</td>
+                <td className="is-vcentered has-text-centered">{startIndexFiltered + index + 1}</td>
+                <td className="is-vcentered has-text-centered is-multiline">{product.locationname}</td>
+                <td className="is-vcentered has-text-centered">{product.invioce}</td>
+                <td className="is-vcentered has-text-centered">{product.producttype}</td>
+                <td className="is-vcentered has-text-centered">{product.unit}</td>
+                <td className="is-vcentered has-text-centered">{product.quantity}</td>
+                <td className="is-vcentered has-text-centered">{product.unitprice}</td>
+                <td className="is-vcentered has-text-centered">{product.price}</td>
+                <td className="is-vcentered has-text-centered">{product.user.name}</td>
                 <td>
                   <div className="buttons">
                     <Link
