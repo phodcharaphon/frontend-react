@@ -1,8 +1,18 @@
 /* DrivingList.css */
 
 .driving-list-container {
-  padding: 20px;
+  margin: 0 auto;
 }
+
+.table-container {
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+.export-button {
+  margin-top: 20px;
+}
+
 
 .title {
   font-size: 24px;
@@ -11,6 +21,11 @@
 
 .button {
   margin-bottom: 10px;
+}
+
+.buttons {
+  text-align: center;
+  width: 100%;
 }
 
 .table-container {

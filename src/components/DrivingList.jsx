@@ -4,10 +4,12 @@ import axios from "axios";
 import "bulma/css/bulma.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 import "./DrivingList.css";
+import * as XLSX from "xlsx";
 
 const DrivingList = () => {
   const [drivings, setDrivings] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
   const itemsPerPage = 10;
 
   useEffect(() => {
@@ -24,26 +26,89 @@ const DrivingList = () => {
     getDrivings();
   };
 
-  const totalItems = drivings.length;
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const handleSearch = (event) => {
+    setSearchQuery(event.target.value);
+    setCurrentPage(0);
+  };
 
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentItems = drivings.slice(startIndex, endIndex);
+  const filteredDrivings = drivings.filter((driving) => {
+    const searchKeywords = searchQuery.toLowerCase().split(" ");
+
+    return searchKeywords.every((keyword) =>
+      Object.values(driving).some((value) =>
+        value.toString().toLowerCase().includes(keyword)
+      )
+    );
+  });
+
+  const totalFilteredItems = filteredDrivings.length;
+  const totalFilteredPages = Math.ceil(totalFilteredItems / itemsPerPage);
+
+  const startIndexFiltered = currentPage * itemsPerPage;
+  const endIndexFiltered = startIndexFiltered + itemsPerPage;
+  const currentFilteredItems = filteredDrivings.slice(
+    startIndexFiltered,
+    endIndexFiltered
+  );
+
+  const handleExportToExcel = () => {
+    const formattedData = currentFilteredItems.map((driving, index) => [
+      index + 1,
+      driving.nocars,
+      driving.name,
+      driving.status,
+      driving.note,
+      driving.distance,
+      driving.department,
+      driving.user.name
+    ]);
+
+    const worksheet = XLSX.utils.aoa_to_sheet([
+      ['ลำดับ', 'ทะเบียนรถ', 'เจ้าของรถ', 'สถานะ', 'หมายเหตุ', 'ระยะทาง', 'สาขา', 'ผู้ลงข้อมูล'],
+      ...formattedData,
+    ]);
+
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'รายงานการวิ่งรถ');
+
+    XLSX.writeFile(workbook, 'รายงานการวิ่งรถ.xlsx');
+  };
 
   return (
     <div className="driving-list-container">
       <h2 className="title">ตารางการวิ่งรถ</h2>
-      <div className="field is-grouped">
-        <p className="control">
+
+      <div className="field is-flex is-align-items-center mb-3">
+        <label className="label mr-2">ค้นหา:</label>
+        <div className="control is-flex-grow-1">
+          <input
+            type="text"
+            className="input"
+            style={{ maxWidth: '25%' }}
+            value={searchQuery}
+            onChange={handleSearch}
+          />
+        </div>
+        <div className="field is-grouped">
+        <div className="control">
           <Link to="/drivings/add" className="button is-primary">
             <span className="icon">
               <i className="fas fa-plus"></i>
             </span>
             <span>เพิ่มข้อมูล</span>
           </Link>
-        </p>
+        </div>
+        <div className="control">
+          <button className="button is-success" onClick={handleExportToExcel}>
+            <span className="icon">
+              <i className="fas fa-file-excel"></i>
+            </span>
+            <span>Excel</span>
+          </button>
+        </div>
       </div>
+      </div>
+
       <div className="table-container">
         <table className="table is-striped is-fullwidth">
           <thead>
@@ -60,9 +125,9 @@ const DrivingList = () => {
             </tr>
           </thead>
           <tbody>
-            {currentItems.map((driving, index) => (
+            {currentFilteredItems.map((driving, index) => (
               <tr key={driving.uuid}>
-                <td>{startIndex + index + 1}</td>
+                <td>{startIndexFiltered + index + 1}</td>
                 <td>{driving.nocars}</td>
                 <td>{driving.name}</td>
                 <td>{driving.status}</td>
@@ -74,7 +139,7 @@ const DrivingList = () => {
                   <div className="buttons">
                     <Link
                       to={`/drivings/edit/${driving.uuid}`}
-                      className="button is-small is-info"
+                      className="button is-info"
                     >
                       <span className="icon">
                         <i className="fas fa-edit"></i>
@@ -83,7 +148,7 @@ const DrivingList = () => {
                     </Link>
                     <button
                       onClick={() => deleteDriving(driving.uuid)}
-                      className="button is-small is-danger"
+                      className="button is-danger"
                     >
                       <span className="icon">
                         <i className="fas fa-trash-alt"></i>
@@ -108,7 +173,7 @@ const DrivingList = () => {
         <button
           className="button"
           onClick={() => setCurrentPage(currentPage + 1)}
-          disabled={currentPage === totalPages - 1}
+          disabled={currentPage === totalFilteredPages - 1}
         >
           Next
         </button>
